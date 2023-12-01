@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.estruturadedadostrabalhofinal.ListaController">
+   <children>
+      <AnchorPane prefHeight="700.0" prefWidth="983.0" style="-fx-background-color: #985ACE;">
+         <children>
+            <AnchorPane layoutX="166.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="651.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+               <children>
+                  <Text layoutX="291.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtros">
+                     <font>
+                        <Font name="Comic Sans MS" size="22.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="318.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="278.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do Produto">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="IDForm" layoutX="225.0" layoutY="73.0" prefHeight="30.0" prefWidth="201.0" style="-fx-background-color: #F8F1FF;" />
+                  <Text layoutX="291.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria">
+                     <font>
+                        <Font name="Comic Sans MS" size="12.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="nomeForm" layoutX="225.0" layoutY="134.0" prefHeight="30.0" prefWidth="201.0" style="-fx-background-color: #F8F1FF;" />
+                  <ChoiceBox fx:id="catFiltro" layoutX="225.0" layoutY="198.0" prefHeight="30.0" prefWidth="201.0" style="-fx-background-color: #F8F1FF; -fx-background-radius: 7;" />
+                  <Button layoutX="375.0" layoutY="251.0" mnemonicParsing="false" onAction="#pesquisar" prefHeight="30.0" prefWidth="103.0" style="-fx-background-color: #985ACE; -fx-background-radius: 7;" text="Pesquisar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <ListView fx:id="listviewform" layoutX="14.0" layoutY="321.0" prefHeight="285.0" prefWidth="620.0" style="-fx-background-color: #F8F1FF; -fx-background-radius: 7;" />
+                  <Text layoutX="268.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de Produtos">
+                     <font>
+                        <Font name="Comic Sans MS" size="14.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="174.0" layoutY="251.0" mnemonicParsing="false" onAction="#limpar" prefHeight="30.0" prefWidth="103.0" style="-fx-background-color: red; -fx-background-radius: 7;" text="Limpar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
