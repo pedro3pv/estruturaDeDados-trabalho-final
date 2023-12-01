@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HelloApplication extends Application {
     private static Stage stage;
@@ -24,12 +25,14 @@ public class HelloApplication extends Application {
         primaryStage.show();
     }
 
-    public static void changeScreen(String scr){
+    public static void changeScreen(String scr, ArvoreBinaria arvoreBinaria){
         switch (scr){
             case "main":
                 stage.setScene(mainScreen);
+                notifyAllListeners("main",arvoreBinaria);
             case "details":
                 stage.setScene(listaScreen);
+                notifyAllListeners("details",arvoreBinaria);
         }
         stage.show();
     }
@@ -37,5 +40,17 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         launch();
 
+    }
+    private static ArrayList<OnChangeScreen> listeners = new ArrayList<>();
+    public static interface OnChangeScreen{
+        void OnChangeScreen(String newScreen, ArvoreBinaria userData);
+    }
+    public static void addOnChangeScreenListener(OnChangeScreen newListener){
+        listeners.add(newListener);
+    }
+    private static void notifyAllListeners(String newScreen, ArvoreBinaria userData){
+        for (OnChangeScreen l : listeners){
+            l.OnChangeScreen(newScreen,userData);
+        }
     }
 }

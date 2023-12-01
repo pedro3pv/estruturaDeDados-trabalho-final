@@ -57,13 +57,8 @@ public class HelloController implements Initializable {
     }
 
     @FXML
-    void teladois(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Tela_ListadeProdutos.fxml"));
-        root = loader.load();
-
-        ListaController listaController = loader.getController();
-        listaController.setArvoreBinaria(arvoreBinaria);
-        HelloApplication.changeScreen("details");
+    void teladois(ActionEvent event) {
+        HelloApplication.changeScreen("details",arvoreBinaria);
     }
 
     @Override
