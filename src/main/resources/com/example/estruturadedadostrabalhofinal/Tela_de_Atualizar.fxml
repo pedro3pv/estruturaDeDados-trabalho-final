@@ -25,41 +25,36 @@
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="203.0" layoutY="75.0" style="-fx-background-color: #F8F1FF; -fx-background-radius: 7;" />
+                  <TextField fx:id="nomeItem" layoutX="203.0" layoutY="75.0" style="-fx-background-color: #F8F1FF; -fx-background-radius: 7;" />
                   <Text layoutX="173.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição do Produto (100 Caracteres)" wrappingWidth="217.478515625">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Text>
-                  <TextArea layoutX="77.0" layoutY="147.0" prefHeight="200.0" prefWidth="411.0" style="-fx-control-inner-background: #F8F1FF; -fx-background-radius: 7;" wrapText="true" />
+                  <TextArea fx:id="descItem" layoutX="77.0" layoutY="147.0" prefHeight="200.0" prefWidth="411.0" style="-fx-control-inner-background: #F8F1FF; -fx-background-color: #F8F1FF; -fx-background-radius: 7;" wrapText="true" />
                   <Text layoutX="235.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço do Produto">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="202.0" layoutY="382.0" style="-fx-background-color: #F8F1FF; -fx-background-radius: 7;" />
+                  <TextField fx:id="precoItem" layoutX="208.0" layoutY="382.0" style="-fx-background-color: #F8F1FF; -fx-background-radius: 7;" />
                   <Text layoutX="219.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria do Produto">
                      <font>
                         <Font name="Comic Sans MS" size="12.0" />
                      </font>
                   </Text>
-                  <ChoiceBox layoutX="191.0" layoutY="443.0" prefHeight="30.0" prefWidth="173.0" style="-fx-background-color: #F8F1FF; -fx-background-radius: 7;" />
-                  <Button layoutX="305.0" layoutY="481.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" style="-fx-background-color: #985ACE; -fx-background-radius: 7;" text="Atualizar" textAlignment="CENTER" textFill="WHITE">
+                  <ChoiceBox fx:id="categoriaItem" layoutX="191.0" layoutY="443.0" prefHeight="30.0" prefWidth="173.0" style="-fx-background-color: #F8F1FF; -fx-background-radius: 7;" />
+                  <Button layoutX="305.0" layoutY="481.0" mnemonicParsing="false" onAction="#atualizarItem" prefHeight="30.0" prefWidth="99.0" style="-fx-background-color: #985ACE; -fx-background-radius: 7;" text="Atualizar" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="156.0" layoutY="481.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" style="-fx-background-color: red; -fx-background-radius: 7;" text="Cancelar" textAlignment="CENTER" textFill="WHITE">
+                  <Button layoutX="156.0" layoutY="481.0" mnemonicParsing="false" onAction="#cancelarAtualizacao" prefHeight="30.0" prefWidth="99.0" style="-fx-background-color: red; -fx-background-radius: 7;" text="Cancelar" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="233.0" layoutY="522.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" style="-fx-background-color: Yellow; -fx-background-radius: 7;" text="Excluir" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="18.0" layoutY="14.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="59.0" style="-fx-background-color: #ACEC52; -fx-background-radius: 7;" text="Voltar" textAlignment="CENTER">
+                  <Button layoutX="233.0" layoutY="522.0" mnemonicParsing="false" onAction="#excluirItem" prefHeight="30.0" prefWidth="99.0" style="-fx-background-color: Yellow; -fx-background-radius: 7;" text="Excluir" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

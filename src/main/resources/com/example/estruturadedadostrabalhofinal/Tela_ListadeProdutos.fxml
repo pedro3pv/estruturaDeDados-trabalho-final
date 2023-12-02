@@ -54,6 +54,11 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
+                  <Button layoutX="16.0" layoutY="11.0" mnemonicParsing="false" onAction="#voltarAoCadastro" prefHeight="30.0" prefWidth="77.0" style="-fx-background-color: #ACEC52; -fx-background-radius: 7;" text="Cadastro" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
