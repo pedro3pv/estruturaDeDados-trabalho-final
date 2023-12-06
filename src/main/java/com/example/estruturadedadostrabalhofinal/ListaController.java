@@ -9,8 +9,6 @@ import java.util.ResourceBundle;
 import com.example.estruturadedadostrabalhofinal.TechMart.ArvoreBinaria;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,8 +36,6 @@ public class ListaController implements Initializable {
     @FXML
     private TextField nomeForm;
 
-    String[] erro = {"error","error","error"};
-
     private ArrayList<String> retornoArvoreBinaria;
     private ArrayList<String> dadosLista;
     private ArvoreBinaria arvoreBinaria;
@@ -65,26 +61,32 @@ public class ListaController implements Initializable {
 
     @FXML
     void voltarAoCadastro(ActionEvent event) {
-        HelloApplication.changeScreen("main",arvoreBinaria,-1);
+        HelloApplication.changeScreen("main",arvoreBinaria,-1,-1);
     }
 
     private void pesquisar(int ID,String nome,String Categoria){
         ArrayList<String> resposta = new ArrayList<>();
-        if (ID >= 0 && !Objects.equals(nome, "") && !Objects.equals(Categoria, "")){
+        boolean idvalido = ID >= 0;
+        boolean nomevalido = !Objects.equals(nome, "");
+        boolean catvalido = !Objects.equals(Categoria, null);
+        System.out.println(idvalido);
+        System.out.println(nomevalido);
+        System.out.println(catvalido);
+        if (idvalido && nomevalido && catvalido){
                 for (int j = 0;j < retornoArvoreBinaria.size();j += 5){
                     int iD = Integer.parseInt(retornoArvoreBinaria.get(j));
                     if (Integer.parseInt(retornoArvoreBinaria.get((iD * 5) + 0)) == ID && Objects.equals(retornoArvoreBinaria.get((iD * 5) + 1), nome) && Objects.equals(retornoArvoreBinaria.get((iD * 5) + 4), Categoria)){
                         resposta.add("ID:" + retornoArvoreBinaria.get((iD*5)+0) + " Nome:" + retornoArvoreBinaria.get((iD*5)+1) + " Preço" + retornoArvoreBinaria.get((iD*5)+3) + " Categoria:" + retornoArvoreBinaria.get((iD*5)+4));
                     }
                 }
-        } else if (ID >= 0 && !Objects.equals(nome, "")) {
+        } else if (idvalido && nomevalido) {
             for (int j = 0;j < retornoArvoreBinaria.size();j += 5){
                 int iD = Integer.parseInt(retornoArvoreBinaria.get(j));
                 if (Integer.parseInt(retornoArvoreBinaria.get((iD * 5) + 0)) == ID && Objects.equals(retornoArvoreBinaria.get((iD * 5) + 1), nome)){
                     resposta.add("ID:" + retornoArvoreBinaria.get((iD*5)+0) + " Nome:" + retornoArvoreBinaria.get((iD*5)+1) + " Preço" + retornoArvoreBinaria.get((iD*5)+3) + " Categoria:" + retornoArvoreBinaria.get((iD*5)+4));
                 }
             }
-        } else if (ID >= 0 && !Objects.equals(Categoria, "")) {
+        } else if (idvalido && catvalido) {
             for (int j = 0;j < retornoArvoreBinaria.size();j += 5){
                 int iD = Integer.parseInt(retornoArvoreBinaria.get(j));
                 if (Integer.parseInt(retornoArvoreBinaria.get((iD * 5) + 0)) == ID && Objects.equals(retornoArvoreBinaria.get((iD * 5) + 4), Categoria)){
@@ -92,35 +94,36 @@ public class ListaController implements Initializable {
                     resposta.add("ID:" + retornoArvoreBinaria.get((iD*5)+0) + " Nome:" + retornoArvoreBinaria.get((iD*5)+1) + " Preço" + retornoArvoreBinaria.get((iD*5)+3) + " Categoria:" + retornoArvoreBinaria.get((iD*5)+4));
                 }
             }
-        } else if (!Objects.equals(nome, "") && !Objects.equals(Categoria, "")) {
+        } else if (nomevalido && catvalido) {
             for (int j = 0;j < retornoArvoreBinaria.size();j += 5){
                 int iD = Integer.parseInt(retornoArvoreBinaria.get(j));
                 if (Objects.equals(retornoArvoreBinaria.get((iD * 5) + 1), nome) && Objects.equals(retornoArvoreBinaria.get((iD * 5) + 4), Categoria)){
                     resposta.add("ID:" + retornoArvoreBinaria.get((iD*5)+0) + " Nome:" + retornoArvoreBinaria.get((iD*5)+1) + " Preço" + retornoArvoreBinaria.get((iD*5)+3) + " Categoria:" + retornoArvoreBinaria.get((iD*5)+4));
                 }
             }
-        } else if (ID >= 0 && Objects.equals(nome, "") && Objects.equals(Categoria, "")) {
+        } else if (idvalido && !nomevalido && !catvalido) {
+            System.out.println("aqui");
             for (int j = 0; j < retornoArvoreBinaria.size(); j += 5) {
                 int iD = Integer.parseInt(retornoArvoreBinaria.get(j));
                 if (Integer.parseInt(retornoArvoreBinaria.get((iD * 5) + 0)) == ID) {
                     resposta.add("ID:" + retornoArvoreBinaria.get((iD*5)+0) + " Nome:" + retornoArvoreBinaria.get((iD*5)+1) + " Preço" + retornoArvoreBinaria.get((iD*5)+3) + " Categoria:" + retornoArvoreBinaria.get((iD*5)+4));
                 }
             }
-        } else if (!Objects.equals(nome, "") && Objects.equals(Categoria, "") && ID < 0) {
+        } else if (nomevalido && !catvalido && ID < 0) {
             for (int j = 0; j < retornoArvoreBinaria.size(); j += 5) {
                 int iD = Integer.parseInt(retornoArvoreBinaria.get(j));
                 if (Objects.equals(retornoArvoreBinaria.get((iD * 5) + 1), nome)) {
                     resposta.add("ID:" + retornoArvoreBinaria.get((iD*5)+0) + " Nome:" + retornoArvoreBinaria.get((iD*5)+1) + " Preço" + retornoArvoreBinaria.get((iD*5)+3) + " Categoria:" + retornoArvoreBinaria.get((iD*5)+4));
                 }
             }
-        } else if (!Objects.equals(Categoria, "") && Objects.equals(nome, "") && ID < 0) {
+        } else if (catvalido && !nomevalido && ID < 0) {
             for (int j = 0; j < retornoArvoreBinaria.size(); j += 5) {
                 int iD = Integer.parseInt(retornoArvoreBinaria.get(j));
                 if (Objects.equals(retornoArvoreBinaria.get((iD * 5) + 4), Categoria)) {
                     resposta.add("ID:" + retornoArvoreBinaria.get((iD*5)+0) + " Nome:" + retornoArvoreBinaria.get((iD*5)+1) + " Preço" + retornoArvoreBinaria.get((iD*5)+3) + " Categoria:" + retornoArvoreBinaria.get((iD*5)+4));
                 }
             }
-        } else if (ID < 0 && Objects.equals(nome, "") && Objects.equals(Categoria, "") && !Objects.equals(IDForm.getText(), "") && !Objects.equals(nomeForm.getText(), "") && !Objects.equals(catFiltro.getValue(), "")){
+        } else if (!idvalido && !nomevalido && !catvalido){
             System.out.println("error");
             System.out.println(ID);
             System.out.println(nome);
@@ -150,7 +153,7 @@ public class ListaController implements Initializable {
         //listviewform.getItems().addAll(erro);
         HelloApplication.addOnChangeScreenListener(new HelloApplication.OnChangeScreen() {
             @Override
-            public void OnChangeScreen(String newScreen, ArvoreBinaria userData, int ID) {
+            public void OnChangeScreen(String newScreen, ArvoreBinaria userData, int ID,int IDFake) {
                 arvoreBinaria = userData;
                 String[] retorno = userData.retornarEmOrdem();
                 retornoArvoreBinaria = new ArrayList<>(List.of(userData.retornarEmOrdem()));
@@ -185,7 +188,7 @@ public class ListaController implements Initializable {
                         currentSelection = listviewform.getSelectionModel().getSelectedItem();
                         for (int i = 0;i<dadosLista.size();i++){
                             if (Objects.equals(dadosLista.get(i), currentSelection)){
-                                HelloApplication.changeScreen("atualizar",arvoreBinaria,Integer.parseInt(realID[i]));
+                                HelloApplication.changeScreen("atualizar",arvoreBinaria,Integer.parseInt(realID[i]),i);
                             }
                         }
                     }

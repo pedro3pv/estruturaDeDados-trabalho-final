@@ -1,6 +1,8 @@
 package com.example.estruturadedadostrabalhofinal.TechMart;
 
-public class No {
+import java.io.Serializable;
+
+public class No implements Serializable {
     public int ID;
     public String name;
     public String descricao;

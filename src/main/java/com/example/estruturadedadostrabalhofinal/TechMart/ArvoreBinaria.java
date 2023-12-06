@@ -1,9 +1,10 @@
 package com.example.estruturadedadostrabalhofinal.TechMart;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArvoreBinaria {
+public class ArvoreBinaria implements Serializable {
     private No raiz;
     private int ID = 0;
     public void inserir(String name, String descricao, double preco, String categoria) {
@@ -48,7 +49,7 @@ public class ArvoreBinaria {
         }
 
         // Converte a lista para um novo array
-        return listaSemNulos.toArray(new String[0]);
+        return listaSemNulos.toArray(new String[listaSemNulos.size()]);
     }
     private void percorrerEmOrdem(No no, String[] categorias) {
         if (no != null) {
@@ -99,12 +100,26 @@ public class ArvoreBinaria {
             }
 
             // Nó com dois filhos: encontrar o menor nó na subárvore direita
-            raiz.ID = encontrarMenorValor(raiz.direita);
+            No menorNo = encontrarMenorNo(raiz.direita);
+
+            // Substituir o nó atual pelo menor nó na subárvore direita
+            raiz.ID = menorNo.ID;
+            raiz.name = menorNo.name;
+            raiz.descricao = menorNo.descricao;
+            raiz.preco = menorNo.preco;
+            raiz.categoria = menorNo.categoria;
 
             // Remover o menor nó na subárvore direita
-            raiz.direita = removerRec(raiz.direita, raiz.ID);
+            raiz.direita = removerRec(raiz.direita, menorNo.ID);
         }
 
+        return raiz;
+    }
+
+    private No encontrarMenorNo(No raiz) {
+        while (raiz.esquerda != null) {
+            raiz = raiz.esquerda;
+        }
         return raiz;
     }
 
@@ -115,5 +130,12 @@ public class ArvoreBinaria {
             raiz = raiz.esquerda;
         }
         return menorValor;
+    }
+
+    @Override
+    public String toString() {
+        return "ArvoreBinaria{" +
+                "raiz=" + raiz +
+                '}';
     }
 }

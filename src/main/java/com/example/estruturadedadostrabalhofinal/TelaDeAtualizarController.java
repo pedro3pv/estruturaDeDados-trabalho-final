@@ -1,6 +1,7 @@
 package com.example.estruturadedadostrabalhofinal;
 
 import com.example.estruturadedadostrabalhofinal.TechMart.ArvoreBinaria;
+import com.example.estruturadedadostrabalhofinal.TechMart.PersistenciaDaArvoreBinaria;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -39,27 +40,29 @@ public class TelaDeAtualizarController implements Initializable {
             for (int i = 0; i < arvoreBinaria.retornarEmOrdem().length; i++) {
                 System.out.println(arvoreBinaria.retornarEmOrdem()[i]);
             }
-            HelloApplication.changeScreen("details",arvoreBinaria,-1);
+            PersistenciaDaArvoreBinaria.salvarArvoreBinaria(arvoreBinaria, "./arvoreBinaria.dat");
+            HelloApplication.changeScreen("details",arvoreBinaria,-1,-1);
         }
     }
 
     @FXML
     void cancelarAtualizacao(ActionEvent event) {
-        HelloApplication.changeScreen("details",arvoreBinaria,-1);
+        HelloApplication.changeScreen("details",arvoreBinaria,-1,-1);
     }
 
     @FXML
     void excluirItem(ActionEvent event) {
         System.out.println(iD);
         arvoreBinaria.remover(iD);
-        HelloApplication.changeScreen("details",arvoreBinaria,-1);
+        PersistenciaDaArvoreBinaria.salvarArvoreBinaria(arvoreBinaria, "./arvoreBinaria.dat");
+        HelloApplication.changeScreen("details",arvoreBinaria,-1,-1);
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HelloApplication.addOnChangeScreenListener(new HelloApplication.OnChangeScreen() {
 
             @Override
-            public void OnChangeScreen(String newScreen, ArvoreBinaria userData, int ID) {
+            public void OnChangeScreen(String newScreen, ArvoreBinaria userData, int ID,int IDFake) {
                 if (ID >= 0) {
                     iD = ID;
                     arvoreBinaria = userData;
@@ -67,10 +70,10 @@ public class TelaDeAtualizarController implements Initializable {
                     retornoArvoreBinaria = new ArrayList<>(List.of(userData.retornarEmOrdem()));
                     categoriaItem.getItems().clear();
                     categoriaItem.getItems().addAll(categorias);
-                    nomeItem.setText(retorno[(ID * 5) + 1]);
-                    descItem.setText(retorno[(ID * 5) + 2]);
-                    precoItem.setText(retorno[(ID * 5) + 3]);
-                    categoriaItem.setValue(retorno[(ID * 5) + 4]);
+                    nomeItem.setText(retorno[(IDFake * 5) + 1]);
+                    descItem.setText(retorno[(IDFake * 5) + 2]);
+                    precoItem.setText(retorno[(IDFake * 5) + 3]);
+                    categoriaItem.setValue(retorno[(IDFake * 5) + 4]);
                 }
             }
         });

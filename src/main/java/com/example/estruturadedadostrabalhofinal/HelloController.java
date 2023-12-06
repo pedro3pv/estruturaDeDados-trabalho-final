@@ -1,12 +1,11 @@
 package com.example.estruturadedadostrabalhofinal;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.example.estruturadedadostrabalhofinal.TechMart.ArvoreBinaria;
+import com.example.estruturadedadostrabalhofinal.TechMart.PersistenciaDaArvoreBinaria;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,6 +43,7 @@ public class HelloController implements Initializable {
     protected void cadastroDeProduto(ActionEvent event) {
         if (!Objects.equals(nomeForm.getText(), "") && !Objects.equals(descForm.getText(), "") && !Objects.equals(precoForm.getText(), "") && !Objects.equals(cateForm.getValue(), "")) {
             arvoreBinaria.inserir(nomeForm.getText(), descForm.getText(), Double.parseDouble(precoForm.getText()), cateForm.getValue());
+            PersistenciaDaArvoreBinaria.salvarArvoreBinaria(arvoreBinaria, "./arvoreBinaria.dat");
             System.out.println("cadastro");
         }
     }
@@ -58,14 +58,14 @@ public class HelloController implements Initializable {
 
     @FXML
     void teladois(ActionEvent event) {
-        HelloApplication.changeScreen("details",arvoreBinaria,-1);
+        HelloApplication.changeScreen("details",arvoreBinaria,-1,-1);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         HelloApplication.addOnChangeScreenListener(new HelloApplication.OnChangeScreen() {
             @Override
-            public void OnChangeScreen(String newScreen, ArvoreBinaria userData, int ID) {
+            public void OnChangeScreen(String newScreen, ArvoreBinaria userData, int ID,int IDFake) {
                 System.out.println("nova tela:"+newScreen+", "+userData);
                 arvoreBinaria = userData;
             }
